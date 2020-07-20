@@ -1,0 +1,18 @@
+<table class="table is-striped fullwidth">
+  <thead>
+    <th>Name</th>
+    <th>Added</th>
+  </thead>
+  <tbody>
+  {{#each @model as |paper|}}
+    <tr>
+      <td>
+        <LinkTo @route="paper" @model={{paper.id}}>{{paper.displayName}}</LinkTo>
+      </td>
+      <td>
+        {{paper.createdAt}}
+      </td>
+    </tr>
+  {{/each}}
+</tbody>
+</table>

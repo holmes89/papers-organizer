@@ -1,0 +1,15 @@
+{{outlet}}<h1>{{@model.displayName}}</h1>
+
+<p>
+  <strong>Created: {{@model.createdAt}}</strong>
+</p>
+
+<div>URL: {{@model.url}}</div>
+<div>Source: {{@model.url}}</div>
+<ul>
+  {{#each @model.tags as |tag|}}
+    <li>
+      {{ tag }}
+    </li>
+  {{/each}}
+</ul>
