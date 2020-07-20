@@ -5,8 +5,12 @@
   "author": "Joel Holmes",
   "license": "Apache-2.0",
   "private": true,
+  "jest": {
+    "testEnvironment": "node"
+  },
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+     "test": "jest"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -15,5 +19,10 @@
     "jsonapi-serializer": "^3.6.6",
     "mongoose": "^5.9.25",
     "morgan": "~1.9.1"
+  },
+  "devDependencies": {
+    "jest": "^26.1.0",
+    "mongodb-memory-server": "^6.6.1",
+    "supertest": "^4.0.2"
   }
 }

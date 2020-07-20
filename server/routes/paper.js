@@ -16,7 +16,7 @@ const internalError = new JSONAPIError({
 })
 
 /* GET papers listing. */
-router.get('/', (req, res, next) => {
+router.get('/', async (req, res, next) => {
   Paper.find().then((papers) => {
       var jsonapi = Serializer.serialize(papers.map( p => p.transform()));
       res.send(jsonapi)
@@ -24,7 +24,7 @@ router.get('/', (req, res, next) => {
 });
 
 /* GET single paper. */
-router.get('/:id', (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
   Paper.findById(req.params.id).then((paper) => {
       if (!paper) {
         return res.status(404).send( new JSONAPIError({
@@ -42,7 +42,7 @@ router.get('/:id', (req, res, next) => {
 });
 
 /* POST single paper. */
-router.post('/', (req, res, next) => {
+router.post('/', async (req, res, next) => {
   try{
     Deserializer.deserialize(req.body, async (err, paper) => {
       if (err) {
@@ -70,7 +70,7 @@ router.post('/', (req, res, next) => {
 });
 
 /* Update single paper. */
-router.patch('/:id', (req, res, next) => {
+router.patch('/:id', async (req, res, next) => {
   try{
     Deserializer.deserialize(req.body, async (err, paper) => {
       if (err) {

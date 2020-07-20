@@ -7,6 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('server:server');
 var http = require('http');
+const mongoose = require('mongoose');
 
 /**
  * Get port from environment and store in Express.
@@ -14,6 +15,16 @@ var http = require('http');
 
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
+
+
+let isProduction = process.env.NODE_ENV === 'production';
+
+if(isProduction){
+  mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true, useFindAndModify: false });
+} else {
+  mongoose.connect('mongodb://localhost/papers',  {useNewUrlParser: true, useFindAndModify: false });
+  mongoose.set('debug', true);
+}
 
 /**
  * Create HTTP server.
