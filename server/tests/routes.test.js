@@ -111,7 +111,7 @@ describe('paper ', () => {
         }
       })
 
-    expect(res.status).toEqual(201)
+    expect(res.status).toEqual(200)
     expect(res.body.data.id).toEqual(paper.id)
     expect(res.body.data.attributes.displayName).toEqual('changed')
 
