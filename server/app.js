@@ -1,11 +1,21 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+let express = require('express');
+let path = require('path');
+let cookieParser = require('cookie-parser');
+let logger = require('morgan');
+const mongoose = require('mongoose');
 
-var paperRouter = require('./routes/paper');
+let paperRouter = require('./routes/paper');
 
-var app = express();
+let isProduction = process.env.NODE_ENV === 'production';
+
+if(isProduction){
+  mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true, useFindAndModify: false });
+} else {
+  mongoose.connect('mongodb://localhost/papers',  {useNewUrlParser: true, useFindAndModify: false });
+  mongoose.set('debug', true);
+}
+
+let app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
