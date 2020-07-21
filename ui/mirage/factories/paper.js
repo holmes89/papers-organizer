@@ -6,7 +6,7 @@ export default Factory.extend({
     return faker.commerce.productName();
   },
   url() {
-    return faker.internet.url();
+    return 'https://download.clojure.org/papers/clojure-hopl-iv-final.pdf';
   },
   source() {
     return faker.internet.url();
