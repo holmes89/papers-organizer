@@ -14,8 +14,11 @@ export default Factory.extend({
   tags() {
     return [faker.commerce.productAdjective()];
   },
-  createdAt() {
+  lastOpened() {
     return faker.date.recent();
+  },
+  createdAt() {
+    return faker.date.past();
   },
   updatedAt() {
     return faker.date.recent();

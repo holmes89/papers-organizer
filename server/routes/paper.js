@@ -49,9 +49,10 @@ router.get('/:id', async (req, res, next) => {
 /* POST single paper. */
 router.post('/', async (req, res, next) => {
   try {
+    console.log(req.body)
     let paper = await Deserializer.deserialize(req.body)
     paper = await Paper.create(paper)
-    var jsonapi = Serializer.serialize(paper.transform());
+    var jsonapi = Serializer.serialize(paper.transform())
     return res.status(201).send(jsonapi)
   } catch(e) {
     console.log(e)

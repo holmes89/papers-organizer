@@ -6,6 +6,7 @@ export default class PaperModel extends Model {
   @attr('string') source;
   @attr tags;
   @attr notes;
+  @attr('date') lastOpened;
   @attr('date') createdAt;
   @attr('date') updatedAt;
 }

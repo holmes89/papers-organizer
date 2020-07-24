@@ -1,24 +1,58 @@
-<button class="button is-success">
-  <span class="icon is-small">
-    {{fa-icon "plus"}}
-  </span>
-  <span>Add</span>
-</button>
-<table class="table is-striped fullwidth">
-  <thead>
-    <th>Name</th>
-    <th>Added</th>
-  </thead>
-  <tbody>
-  {{#each @model as |paper|}}
-    <tr>
-      <td>
-        <LinkTo @route="paper" @model={{paper.id}}>{{paper.displayName}}</LinkTo>
-      </td>
-      <td>
-        {{paper.createdAt}}
-      </td>
-    </tr>
-  {{/each}}
-</tbody>
-</table>
+<div class="columns is-centered" style="margin-top:10px">
+  <div class="column is-half">
+    <button class="button is-success is-pulled-right" {{on "click" this.toggleModal}}>
+      <span class="icon is-small">
+        {{fa-icon "plus"}}
+      </span>
+      <span>Add</span>
+    </button>
+    <table class="table is-striped fullwidth">
+      <thead>
+        <th>Name</th>
+        <th>Last Opened</th>
+        <th>Added</th>
+      </thead>
+      <tbody>
+        {{#each @model as |paper|}}
+          <tr>
+            <td>
+              <LinkTo @route="paper" @model={{paper.id}}>{{paper.displayName}}</LinkTo>
+            </td>
+            <td>
+              {{moment-format paper.lastOpened 'MM-DD-YYYY' allow-empty=true}}
+            </td>
+            <td>
+              {{moment-format paper.createdAt 'MM-DD-YYYY'}}
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="modal {{if modalActive 'is-active'}}">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Add Paper</p>
+        <button class="delete" aria-label="close" {{on "click" this.toggleModal}}></button>
+      </header>
+      <section class="modal-card-body">
+        <div class="field">
+          <div class="control">
+            <Input class="input" placeholder="Display Name" @value={{this.displayName}} />
+          </div>
+        </div>
+        <div class="field">
+          <div class="control">
+            <Input class="input" placeholder="Source" @value={{this.source}} />
+          </div>
+        </div>
+      </section>
+      <footer class="modal-card-foot">
+        <button class="button is-success" {{on "click" this.addPaper}}>Submit</button>
+        <button class="button" {{on "click" this.toggleModal}}>Cancel</button>
+      </footer>
+    </div>
+</div>

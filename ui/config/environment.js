@@ -29,6 +29,11 @@ module.exports = function(environment) {
   if (environment === 'development') {
   }
 
+  if (environment === 'local') {
+    ENV.apiEndpoint = 'http://localhost:3000'
+  }
+
+
   if (environment === 'test') {
     // Testem prefers this...
     ENV.locationType = 'none';

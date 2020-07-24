@@ -19,10 +19,8 @@ const paperSchema = new mongoose.Schema(
       required: true,
     },
     tags: [String],
-    notes: [{
-      page: Number,
-      content: String
-    }]
+    notes: [String],
+    lastOpened: Date
   },
   { timestamps: true },
 );
