@@ -13,4 +13,5 @@ export default function() {
   this.get('/papers')
   this.get('/papers/:id')
   this.post('papers/')
+  this.patch('papers/:id')
 }

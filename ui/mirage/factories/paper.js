@@ -14,6 +14,9 @@ export default Factory.extend({
   tags() {
     return [faker.commerce.productAdjective()];
   },
+  notes() {
+    return [faker.lorem.paragraph(), faker.lorem.paragraphs()];
+  },
   lastOpened() {
     return faker.date.recent();
   },

@@ -13,13 +13,15 @@
       <embed class="pdfobject" src={{safe-string @model.url}} type="application/pdf" style="overflow: auto; width: 100%; height: 100%;">
     </div>
     <div class="column is-one-third">
+      {{#each notes as |note|}}
       <article class="message">
         <div class="message-body is-primary">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
+          {{note}}
         </div>
       </article>
-      <Textarea id="comment" style="resize:none;width:100%;" rows=10/>
-      <button id="submit-comment" type="button" class="button is-primary" style="margin-top:10px;float:right;">Submit</button>
+      {{/each}}
+      <Textarea  @value={{this.note}} style="resize:none;width:100%;" rows=10/>
+      <button  {{on "click" this.addNote}} type="button" class="button is-primary" style="margin-top:10px;float:right;">Submit</button>
     </div>
   </div>
 </section>

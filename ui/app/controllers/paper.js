@@ -1,8 +1,20 @@
 import Controller from '@ember/controller';
-import { htmlSafe } from '@ember/template';
-import Ember from 'ember';
+import { action } from '@ember/object';
+import { alias } from '@ember/object/computed';
 
 
 export default class PaperController extends Controller {
-  pdfUrl = htmlSafe(this.get('model.url')) + '#pagemode=thumbs&amp;navpanes=0&amp;toolbar=0&amp;statusbar=0&amp;view=FitV'
+  note;
+  @alias ('model.notes') notes;
+
+  @action
+  addNote() {
+    let id = this.get('model.id')
+    this.store.findRecord('paper', id).then((paper)=> {
+      this.notes.push(this.note)
+      paper.set('notes', this.notes)
+      paper.save()
+      this.set('note', '');
+    });
+  }
 }
